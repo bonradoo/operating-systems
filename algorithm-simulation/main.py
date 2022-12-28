@@ -21,6 +21,7 @@ def main():
         print('Processes: ', arguments.amount)
         print('Cycles: ', arguments.cycles)
 
+        sjf.processesInput(processList)
         fcfs.processesInput(processList)
     endTime = time.time()
 
