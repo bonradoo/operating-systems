@@ -29,9 +29,9 @@ def processesInput(processesTuples):
         processes.append(tuple(temp))
 
     results = calculation(processes)
-    saveResults(results)
     waitTimes = [i[4] for i in results]
     turnAroundTimes = [i[3] for i in results]
+    saveResults(results, waitTimes, turnAroundTimes)
 
     print('SJF:')
     print('     Average wait time: ', round(sum(waitTimes)/len(waitTimes), 5))
@@ -39,11 +39,15 @@ def processesInput(processesTuples):
     print('     Average turn around time: ', round(sum(turnAroundTimes)/len(turnAroundTimes), 5))
     print('     Max turn around time: ', max(turnAroundTimes))
 
-def saveResults(results):
+def saveResults(results, waitTimes, turnAroundTimes):
     headerList = ['ID', 'Arrival Time', 'Burst Time', 'Turn Around Time', 'Wait Time', 'Completion Time']
-    filePath = './logs/' + (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
+    calcList = ['Avg WT', 'Max WT', 'Avg TAT', 'Max TAT']
+    avgList = [str(round(sum(waitTimes)/len(waitTimes), 5)).replace('.', ','), str(max(waitTimes)).replace('.',','), str(round(sum(turnAroundTimes)/len(turnAroundTimes), 5)).replace('.',','),str(max(turnAroundTimes)).replace('.',',')]
+    filePath = './logs/SJF_' + (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
     with open(filePath, 'w',newline='', encoding='utf-8') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
+        writer.writerow(calcList)
+        writer.writerow(avgList)
         writer.writerow(headerList)
         for tup in results:
             writer.writerow(tup)
