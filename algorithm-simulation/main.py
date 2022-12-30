@@ -28,7 +28,7 @@ def main():
         print('\n\nPage scheduling algorithms: ')
         print('Pages: ', arguments.pages)
         print('Cycles: ', arguments.cycles)
-        lru.foo(pageList)
+        lru.foo(3, pageList)
     endTime = time.time()
 
 
