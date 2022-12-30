@@ -1,7 +1,7 @@
 import random
 
 #n = number of processes in a list
-def generateList(n=100):
+def processGenList(n=100):
     result = []
     for _ in range(n):
         temp = []
@@ -10,6 +10,10 @@ def generateList(n=100):
         temp = tuple(temp)
         result.append(temp)
     return result
+
+def pageGenList(n=20):
+    result = [random.randint(1,7) for _ in range(n)]
+    return(result)
 
 def main():
     pass

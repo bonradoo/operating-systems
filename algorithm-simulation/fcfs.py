@@ -43,7 +43,7 @@ def saveResults(results, waitTimes, turnAroundTimes):
     headerList = ['ID', 'Arrival Time', 'Burst Time', 'Turn Around Time', 'Wait Time', 'Completion Time']
     calcList = ['Avg WT', 'Max WT', 'Avg TAT', 'Max TAT']
     avgList = [str(round(sum(waitTimes)/len(waitTimes), 5)).replace('.', ','), str(max(waitTimes)).replace('.',','), str(round(sum(turnAroundTimes)/len(turnAroundTimes), 5)).replace('.',','),str(max(turnAroundTimes)).replace('.',',')]
-    filePath = './logs/FCFS_' + (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
+    filePath = './logs/process/FCFS_' + (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
     with open(filePath, 'w',newline='', encoding='utf-8') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerow(calcList)
