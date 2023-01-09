@@ -1,14 +1,9 @@
-import argparse, csv, datetime
-
-def inputHandler():
-    parser = argparse.ArgumentParser(description='File input handler')
-    parser.add_argument('-f', '--file', default='default.txt', help='Provide filepath (default: %(default)s)')
-    args = parser.parse_args()
-    return args
+import csv, datetime
 
 def calculation(processes: list) -> list[int]:
-    processes.sort(key=lambda x: -x[2])
+    processes.sort(key=lambda x: x[1])
     completionTime = 0
+    queue = []
     result = []
     
     for process in processes:
@@ -32,7 +27,6 @@ def processesInput(processesTuples):
     waitTimes = [i[4] for i in results]
     turnAroundTimes = [i[3] for i in results]
     saveResults(results, waitTimes, turnAroundTimes)
-
     print('SJF:')
     print('     Average wait time: ', round(sum(waitTimes)/len(waitTimes), 5))
     print('     Max wait time: ', max(waitTimes))

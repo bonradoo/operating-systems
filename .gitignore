@@ -1,2 +1,6 @@
 algorithm-simulation/__pycache__/lru.cpython-311.pyc
 algorithm-simulation/__pycache__/generator.cpython-311.pyc
+algorithm-simulation/__pycache__/sjf.cpython-310.pyc
+algorithm-simulation/__pycache__/fcfs.cpython-310.pyc
+algorithm-simulation/__pycache__/generator.cpython-310.pyc
+algorithm-simulation/__pycache__/lru.cpython-310.pyc

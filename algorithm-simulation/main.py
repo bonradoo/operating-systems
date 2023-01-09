@@ -19,16 +19,16 @@ def main():
         except:
             print('Error')
 
-        # print('\nProcess scheduling algotithms: ')
-        # print('Processes: ', arguments.amount)
-        # print('Cycles: ', arguments.cycles)
-        # sjf.processesInput(processList)
+        print('\nProcess scheduling algotithms: ')
+        print('Processes: ', arguments.amount)
+        print('Cycles: ', arguments.cycles)
+        sjf.processesInput(processList)
         # fcfs.processesInput(processList)
 
-        print('\n\nPage scheduling algorithms: ')
-        print('Pages: ', arguments.pages)
-        print('Cycles: ', arguments.cycles)
-        lru.foo(3, pageList)
+        # print('\n\nPage scheduling algorithms: ')
+        # print('Pages: ', arguments.pages)
+        # print('Cycles: ', arguments.cycles)
+        # lru.foo(3, pageList)
     endTime = time.time()
 
 
