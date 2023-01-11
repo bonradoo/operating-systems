@@ -1,52 +1,49 @@
-from collections import OrderedDict
+import datetime, csv
 
-#Tworzymy słownik, który będzie przechowywać strony w pamięci operacyjnej
-#Ustawiamy maksymalną liczbę stron, które mogą być przechowywane w pamięci
-#Iterujemy przez zapotrzebowanie na strony
-#Jeśli strona jest już w pamięci, to usuwamy ją i dodajemy ponownie
-#Jeśli strona nie jest w pamięci, ale pamięć jest pełna, to usuwamy najrzadziej używaną stronę
-#Dodajemy stronę do pamięci
-#Zwiększamy licznik użycia dla każdej strony w pamięc
-#Wynikowa pamięć operacyjna
+def calcPageFaults(pages, capacity):
+    capacity = 3
+    s = []
+    pageFaults = 0
 
-def foo(capacity: int, pages: list):
-    # memory = {}
-    # capacity = 3
-    # for page in pages:
-    #     if page in memory:
-    #         memory.pop(page)
-    #     elif len(memory) == capacity:
-    #         memory.pop(min(memory, key=memory.get))
-
-    # memory[page] = 0
-    # for key in memory:
-    #     memory[key] += 1
-    #     print(memory.keys())
-
-
-    memory = {}
-    
-    for page in pages:
-        if page in memory:
-            memory[page] += 1
+    for i in pages:
+        if i not in s:
+            if(len(s) == capacity):
+                s.remove(s[0])
+                s.append(i)
+            else:
+                s.append(i)
+            pageFaults +=1
         else:
-            memory.update({page: 1})
+            s.remove(i)
+            s.append(i)
+    return pageFaults
 
-                
+def processInput(pages, capacity):
+    pageFaults = calcPageFaults(pages, capacity)
+    n = len(pages)
+    print("LRU Page Faults: \t" + str(pageFaults))
+    print("LRU Hit: \t\t" + str(n - pageFaults))
+
+    saveToFile(pages, capacity, (n - pageFaults), pageFaults)
+
+def saveToFile(pages, capacity, pageHits, pageFaults):
+    filePath = './logs/pages/pages_c9/LRU_'+ (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
+    nameList = ['Pages', 'Capacity', 'Page Hits', 'Page Fault']
+    statsList = [len(pages), capacity, pageHits, pageFaults]
+    with open(filePath, 'w', encoding='utf-8', newline='') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerow(nameList)
+        writer.writerow(statsList)
+        for page in pages:
+            writer.writerow(str(page))
     
-
-    memory = dict(sorted(memory.items(), key=lambda x: x[1], reverse=True))
-
-    result = {}
-
-    while len(memory) > capacity:
-        memory.popitem()
-
-    print(memory)
+    with open('./logs/pages/pages_c9/LRU_summary.csv', 'a', newline='', encoding='utf-8') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerow(statsList)
+        
 
 def main():
-    pass
+    processInput([1,2,3,6,5,4], 3)
 
 if __name__ == '__main__':
     main()
-

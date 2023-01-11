@@ -1,10 +1,4 @@
-import argparse, csv, datetime
-
-def inputHandler():
-    parser = argparse.ArgumentParser(description='File input handler')
-    parser.add_argument('-f', '--file', default='default.txt', help='Provide filepath (default: %(default)s)')
-    args = parser.parse_args()
-    return args
+import csv, datetime
 
 def calculation(processes: list) -> list[int]:
     processes.sort(key=lambda x: x[1])
@@ -33,14 +27,8 @@ def processesInput(processesTuples):
     turnAroundTimes = [i[3] for i in results]
     saveResults(results, waitTimes, turnAroundTimes)
 
-    print('FCFS:')
-    print('     Average wait time: ', round(sum(waitTimes)/len(waitTimes), 5))
-    print('     Max wait time: ', max(waitTimes))
-    print('     Average turn around time: ', round(sum(turnAroundTimes)/len(turnAroundTimes), 5))
-    print('     Max turn around time: ', max(turnAroundTimes))
-
 def saveResults(results, waitTimes, turnAroundTimes):
-    headerList = ['ID', 'Arrival Time', 'Burst Time', 'Turn Around Time', 'Wait Time', 'Completion Time']
+    headerList = ['ID', 'Arrival Time', 'Burst Time', 'Completion Time', 'Turn Around Time', 'Wait Time']
     calcList = ['Avg WT', 'Max WT', 'Avg TAT', 'Max TAT']
     avgList = [str(round(sum(waitTimes)/len(waitTimes), 5)).replace('.', ','), str(max(waitTimes)).replace('.',','), str(round(sum(turnAroundTimes)/len(turnAroundTimes), 5)).replace('.',','),str(max(turnAroundTimes)).replace('.',',')]
     filePath = './logs/process/FCFS_' + (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
@@ -51,10 +39,13 @@ def saveResults(results, waitTimes, turnAroundTimes):
         writer.writerow(headerList)
         for tup in results:
             writer.writerow(tup)
+        
+    with open('./logs/process/FCFS_summary.csv', 'a', newline='', encoding='utf-8') as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        writer.writerow(avgList)
 
 def main():
     pass
 
 if __name__ == '__main__':
     main()
-

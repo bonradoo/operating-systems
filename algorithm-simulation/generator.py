@@ -11,8 +11,8 @@ def processGenList(n=100):
         result.append(temp)
     return result
 
-def pageGenList(n=20):
-    result = [random.randint(1,7) for _ in range(n)]
+def pageGenList(n=9, s=100):
+    result = [random.randint(0, n) for _ in range(s)]
     return(result)
 
 def main():

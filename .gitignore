@@ -4,3 +4,5 @@ algorithm-simulation/__pycache__/sjf.cpython-310.pyc
 algorithm-simulation/__pycache__/fcfs.cpython-310.pyc
 algorithm-simulation/__pycache__/generator.cpython-310.pyc
 algorithm-simulation/__pycache__/lru.cpython-310.pyc
+algorithm-simulation/__pycache__/test.cpython-310.pyc
+algorithm-simulation/__pycache__/fifo.cpython-310.pyc
