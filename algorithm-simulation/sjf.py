@@ -79,6 +79,9 @@ def saveResults(processes, turnAroundTimes, waitTimes):
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerow(avgList)
 
+    print('SJF average turn around time: ', str(round(sum(turnAroundTimes)/len(turnAroundTimes), 5)).replace('.',','))
+    print('SJF average wait time: ', str(round(sum(waitTimes)/len(waitTimes), 5)).replace('.', ','))
+
 def main():
     pass
 

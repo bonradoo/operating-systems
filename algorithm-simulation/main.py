@@ -19,7 +19,7 @@ def main():
 
     print('\nPage scheduling algorithms (FIFO and LRU): ')
     print('Pages: \t\t', arguments.pages)
-    print('Cycles: \t', arguments.cycles)
+    print('Cycles: \t', arguments.cycles, '\n')
     
     for _ in range(int(arguments.cycles)):
         try:

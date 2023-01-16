@@ -13,7 +13,7 @@ def processGenList(n=100):
 
 def pageGenList(n=9, s=100):
     result = [random.randint(0, n) for _ in range(s)]
-    return(result)
+    return result
 
 def main():
     pass

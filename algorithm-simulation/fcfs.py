@@ -44,6 +44,9 @@ def saveResults(results, waitTimes, turnAroundTimes):
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerow(avgList)
 
+    print('FCFS average turn around time: ', str(round(sum(turnAroundTimes)/len(turnAroundTimes), 5)).replace('.',','))
+    print('FCFS average wait time: ', str(round(sum(waitTimes)/len(waitTimes), 5)).replace('.', ','))
+
 def main():
     pass
 

@@ -1,7 +1,6 @@
 import datetime, csv
 
 def calcPageFaults(pages, capacity):
-    capacity = 3
     s = []
     pageFaults = 0
 
@@ -27,7 +26,7 @@ def processInput(pages, capacity):
     saveToFile(pages, capacity, (n - pageFaults), pageFaults)
 
 def saveToFile(pages, capacity, pageHits, pageFaults):
-    filePath = './logs/pages/pages_c9/LRU_'+ (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
+    filePath = './logs/pagesc/pages_c7/LRU_'+ (str(datetime.datetime.now())).replace(' ', '_').replace(':', '').replace('.', '') + '.csv'
     nameList = ['Pages', 'Capacity', 'Page Hits', 'Page Fault']
     statsList = [len(pages), capacity, pageHits, pageFaults]
     with open(filePath, 'w', encoding='utf-8', newline='') as csvFile:
@@ -37,7 +36,7 @@ def saveToFile(pages, capacity, pageHits, pageFaults):
         for page in pages:
             writer.writerow(str(page))
     
-    with open('./logs/pages/pages_c9/LRU_summary.csv', 'a', newline='', encoding='utf-8') as csvFile:
+    with open('./logs/pagesc/pages_c7/LRU_summary.csv', 'a', newline='', encoding='utf-8') as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         writer.writerow(statsList)
         
