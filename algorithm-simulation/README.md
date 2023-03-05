@@ -1,4 +1,4 @@
-# CPU scheduling an page replacement algorithm simulation in Python
+# CPU scheduling and page replacement algorithm simulation in Python
 
 ## Process scheduling algorithms:
 - FCFS: First Come First Serve
